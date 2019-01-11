@@ -1,3 +1,5 @@
+
+
 const url = 'https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/GDP-data.json';
 
 req = new XMLHttpRequest();
@@ -15,6 +17,11 @@ const w = 800,
       h = 400,
       yMargin = 40,
       padding = w / dataset.length;
+    
+const firstYear = dataset[0][0];
+const lastYear = dataset[dataset.length-1][0];
+console.log(firstYear);
+console.log(lastYear);
 
 const svg = d3.select('body')
             .append('svg')
@@ -23,8 +30,8 @@ const svg = d3.select('body')
             .attr('height', h);
 
 const xScale = d3.scaleLinear()
-                .domain([0, dataset.length])
-                .range([padding, w - padding]);
+                .domain([1945, 2015])
+                .range([0, w]);
 
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
@@ -43,8 +50,9 @@ svg.selectAll('rect')
     .append('title')
     .text((d) => d);
 
-const xAxis = d3.axisBottom(xScale)
-                .ticks(10);
+const xAxis = d3.axisBottom()
+                .scale(xScale)
+//                .ticks(10, 'f')
 
 svg.append('g')
     .attr('transform', 'translate(0, ' + (h - 40) + ')')

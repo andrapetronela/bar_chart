@@ -9,7 +9,7 @@ body {
     font-family: sans-serif;
 }
 
-h2 {
+#title {
     text-align: center;
     margin: 5rem 0 1rem;
     text-transform: uppercase;
