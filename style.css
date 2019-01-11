@@ -23,14 +23,15 @@ body {
     box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
-#x-axis path,
-#x-axis line {
-    fill: none;
-    stroke: #333;
-    stroke-width: 1;
-    
-}
-
 .bar:hover {
     fill: #d8efe9;
+}
+
+#tooltip {
+/*
+    position: absolute;
+    z-index: 10;
+*/
+/*    visibility: hidden;*/
+    fill: yellow;
 }

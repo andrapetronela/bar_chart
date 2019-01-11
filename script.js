@@ -8,6 +8,13 @@ req.onload = () => {
     req = req.data;
 
 const dataset = req;
+    
+const tooltip = d3.select('body')
+                    .data(dataset)
+                    .enter()
+                    .append('rect')
+                    .attr('id', 'tooltip')
+                    .attr('data-date', (d) => d[0]);
 
 const w = 800,
       h = 400,
@@ -21,8 +28,8 @@ const svg = d3.select('body')
             .attr('height', h);
 
 const xScale = d3.scaleLinear()
-                .domain([1950, 2015])
-                .range([2 * yMargin, w-12]);
+                .domain([1947, 2015])
+                .range([yMargin, w]);
 
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
@@ -36,9 +43,14 @@ svg.selectAll('rect')
     .attr('class', 'bar')
     .attr('x', (d, i) => yMargin + i * padding) 
     .attr('y', (d) => h - yMargin - yScale(d[1]))
-    .attr('width', 3)
+    .attr('width', (w - yMargin) / dataset.length)
     .attr('height', (d) => yScale(d[1]))
     .attr('fill', '#333')
+    .attr('data-date', (d) => d[0])
+    .attr('data-gdp', (d) => d[1])
+//    .on('mouseover', () => tooltip.style('visibility', 'visible'))
+//    .on('mouseout', () => tooltip.style('visibility', 'visible'))
+
     .append('title')
     .text((d) => d);
 
