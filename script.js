@@ -31,7 +31,7 @@ const svg = d3.select('body')
 
 const xScale = d3.scaleLinear()
                 .domain([1945, 2015])
-                .range([0, w]);
+                .range([15, w - 15]);
 
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
