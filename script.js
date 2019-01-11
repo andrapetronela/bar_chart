@@ -11,9 +11,9 @@ req.onload = () => {
 
 const dataset = req;
 
-const w = 1300;
-const h = 700;
-const padding = w / req.length;
+const w = 800,
+      h = 400,
+      padding = w / req.length;
 
 const svg = d3.select('body')
             .append('svg')
@@ -28,11 +28,12 @@ svg.selectAll('rect')
     .data(dataset)
     .enter()
     .append('rect')
+    .attr('class', 'bar')
     .attr('x', (d, i) => i * padding) 
     .attr('y', (d) => h - yScale(d[1]))
     .attr('width', 5)
     .attr('height', (d) => yScale(d[1]))
-    .attr('fill', 'black')
+    .attr('fill', '#333')
     .append('title')
     .text((d) => d)
 }
