@@ -16,7 +16,7 @@ h2 {
     color: #333;
 }
 
-svg {
+.chart {
     background: #d8efe9;
     display: block;
     margin: 2rem auto 0;
