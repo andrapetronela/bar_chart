@@ -11,7 +11,6 @@ const dataset = req;
     
 const minDate = new Date(dataset[0][0]);
 const maxDate = new Date(dataset[dataset.length-1][0]);
-    
 const w = 800,
       h = 400,
       yMargin = 40,
@@ -74,9 +73,9 @@ svg.selectAll('rect')
           .style('padding', '1rem')
           .style("visibility", "visible")
           .attr("data-date", d[0])
-          .html(d[0] + '<br /><strong>'+d[1]+'</strong>')
+          .html(d[0] + '<br /><strong>'+d[1]+' Billions $ </strong>')
     })
-    .on('mouseout', (d) => {          tooltip.style("visibility","hidden")
+    .on('mouseout', (d) => { tooltip.style("visibility","hidden")
         });
 
 const xAxis = d3.axisBottom()
@@ -84,7 +83,7 @@ const xAxis = d3.axisBottom()
 
 const yAxisScale = d3.scaleLinear()
                         .domain([d3.max(dataset, (d) => d[1]), 0])
-                        .range([0, h - yMargin]);
+                        .range([2, h - yMargin]);
 const yAxis = d3.axisLeft()
                 .scale(yAxisScale);
 
@@ -98,3 +97,4 @@ svg.append('g')
     .attr('x', 0)
     .call(yAxis);
 }
+    

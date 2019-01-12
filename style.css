@@ -5,15 +5,16 @@
 }
 
 body {
-    background: #eee;
-    font-family: Roboto;
+    background: #222;
+    font-family: Lato;
 }
 
 #title {
     text-align: center;
     margin: 5rem 0 1rem;
-    text-transform: uppercase;
-    color: #333;
+    color: rgba(255, 255, 255, 0.81);
+    letter-spacing: 3px;
+    font-weight: 300;
 }
 
 .chart {
@@ -35,4 +36,23 @@ body {
     color: #de1654;
     position: absolute; 
     transition: all .5s;
+}
+
+#description {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.9);
+    text-align: center;
+}
+
+#description a:link,
+#description a:visited {
+    color: #9c4dcc;
+}
+
+#description a:hover,
+#description a:active {
+    color: #ce8df5;
 }
