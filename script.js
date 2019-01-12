@@ -30,17 +30,10 @@ const xScale = d3.scaleTime()
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
                 .range([h - yMargin, 0]);
-                
-const tooltip = d3.select('body')
-                    .data(dataset)
-                    .enter()
-                    .append('rect')
-                    .attr('id', 'tooltip')
-                    .attr('x', (d, i) => yMargin + i * padding) 
-                    .attr('y', (d) => h - yMargin - yScale(d[1]))
-                    .attr('width', (w - yMargin) / dataset.length-1)
-                    .attr('data-date', (d) => d[0]);
     
+const tooltip = d3.select('#container')
+                    .append('div')
+                    .attr('id', 'tooltip');                      
 svg.selectAll('rect')
     .data(dataset)
     .enter()
@@ -53,10 +46,17 @@ svg.selectAll('rect')
     .attr('fill', '#333')
     .attr('data-date', (d) => d[0])
     .attr('data-gdp', (d) => d[1])
-    .on('mouseover', () => tooltip.style('visibility', 'visible'))
-    .on('mouseout', () => tooltip.style('visibility', 'hidden'))
-    .append('title')
-    .text((d) => d[0]);
+    .on('mouseover', (d) => {
+      tooltip
+          .style("left", d3.event.pageX + "px") 
+          .style("top", d3.event.pageY + "px")
+          .style('padding', '1rem')
+          .style("visibility", "visible")
+          .attr("data-date", d[0])
+            .text(d[0])
+    })
+    .on('mouseout', (d) => {          tooltip.style("visibility","hidden")
+        });
 
 const xAxis = d3.axisBottom()
                 .scale(xScale);
