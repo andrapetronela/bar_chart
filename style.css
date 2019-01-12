@@ -28,10 +28,8 @@ body {
 }
 
 #tooltip {
-/*
     position: absolute;
     z-index: 10;
-*/
-/*    visibility: hidden;*/
+    visibility: hidden;
     fill: yellow;
 }

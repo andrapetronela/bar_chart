@@ -9,13 +9,6 @@ req.onload = () => {
 
 const dataset = req;
     
-const tooltip = d3.select('body')
-                    .data(dataset)
-                    .enter()
-                    .append('rect')
-                    .attr('id', 'tooltip')
-                    .attr('data-date', (d) => d[0]);
-    
 const minDate = new Date(dataset[0][0]);
 const maxDate = new Date(dataset[dataset.length-1][0]);
     
@@ -38,7 +31,15 @@ const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
                 .range([h - yMargin, 0]);
                 
-
+const tooltip = d3.select('body')
+                    .data(dataset)
+                    .enter()
+                    .append('rect')
+                    .attr('id', 'tooltip')
+                    .attr('x', (d, i) => yMargin + i * padding) 
+                    .attr('y', (d) => h - yMargin - yScale(d[1]))
+                    .attr('width', (w - yMargin) / dataset.length-1)
+                    .attr('data-date', (d) => d[0]);
     
 svg.selectAll('rect')
     .data(dataset)
@@ -52,11 +53,10 @@ svg.selectAll('rect')
     .attr('fill', '#333')
     .attr('data-date', (d) => d[0])
     .attr('data-gdp', (d) => d[1])
-//    .on('mouseover', () => tooltip.style('visibility', 'visible'))
-//    .on('mouseout', () => tooltip.style('visibility', 'visible'))
-
+    .on('mouseover', () => tooltip.style('visibility', 'visible'))
+    .on('mouseout', () => tooltip.style('visibility', 'hidden'))
     .append('title')
-    .text((d) => d);
+    .text((d) => d[0]);
 
 const xAxis = d3.axisBottom()
                 .scale(xScale);
