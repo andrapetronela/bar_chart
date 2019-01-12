@@ -33,7 +33,7 @@ const svg = d3.select('body')
 
 const xScale = d3.scaleTime()
                 .domain([minDate, maxDate])
-                .range([yMargin, w]);
+                .range([yMargin, w-5]);
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
                 .range([h - yMargin, 0]);
@@ -47,7 +47,7 @@ svg.selectAll('rect')
     .attr('class', 'bar')
     .attr('x', (d, i) => yMargin + i * padding) 
     .attr('y', (d) => h - yMargin - yScale(d[1]))
-    .attr('width', (w - yMargin) / dataset.length)
+    .attr('width', (w - yMargin) / dataset.length-1)
     .attr('height', (d) => yScale(d[1]))
     .attr('fill', '#333')
     .attr('data-date', (d) => d[0])
