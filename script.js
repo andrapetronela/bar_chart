@@ -43,7 +43,28 @@ svg.selectAll('rect')
     .attr('y', (d) => h - yMargin - yScale(d[1]))
     .attr('width', (w - yMargin) / dataset.length-1)
     .attr('height', (d) => yScale(d[1]))
-    .attr('fill', '#333')
+    .attr('fill', (d) => {
+        if (d[1] < 300) { return '#fdd835';}
+        else if (d[1] >= 300 && d[1] <= 500) { return '#ffc107'}
+        else if (d[1] > 500 && d[1] <= 700) { return '#ffb300' } 
+        else if (d[1] > 700 && d[1] <= 1000) { return '#ff9800'}
+        else if (d[1] > 1000 && d[1] <= 1300) { return '#ffa000'}
+        else if (d[1] > 1300 && d[1] <= 1600) { return '#ff8f00'}
+        else if (d[1] > 1600 && d[1] <= 2000) { return '#fb8c00'}
+        else if (d[1] > 2000 && d[1] <= 2400) { return '#f57c00'}
+        else if (d[1] > 2400 && d[1] <= 3000) { return '#f57f17'}
+        else if (d[1] > 3000 && d[1] <= 3600) { return '#ef6c00'}
+        else if (d[1] > 3600 && d[1] <= 4400) { return '#ff6f00'}
+        else if (d[1] > 4400 && d[1] <= 5400) { return '#ff6d00'}
+        else if (d[1] > 5400 && d[1] <= 7400) { return '#ff5722'}
+        else if (d[1] > 7400 && d[1] <= 10400) { return '#f4511e'}
+        else if (d[1] > 10400 && d[1] <= 14233) { return '#e64a19'}
+        else if (d[1] > 14233 && d[1] <= 14570) { return '#d84315'}
+        else if (d[1] > 14570 && d[1] <= 15260) { return '#bf360c'}
+        else if (d[1] > 15260 && d[1] <= 16500) { return '#bf360c'}
+        else if (d[1] > 16500 && d[1] <= 17000) { return '#bf360c'}
+        else if (d[1] > 17000) { return '#af2900'}
+    })
     .attr('data-date', (d) => d[0])
     .attr('data-gdp', (d) => d[1])
     .on('mouseover', (d) => {
@@ -53,7 +74,7 @@ svg.selectAll('rect')
           .style('padding', '1rem')
           .style("visibility", "visible")
           .attr("data-date", d[0])
-            .text(d[0])
+          .html(d[0] + '<br /><strong>'+d[1]+'</strong>')
     })
     .on('mouseout', (d) => {          tooltip.style("visibility","hidden")
         });

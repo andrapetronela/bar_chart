@@ -6,7 +6,7 @@
 
 body {
     background: #eee;
-    font-family: sans-serif;
+    font-family: Roboto;
 }
 
 #title {
@@ -17,7 +17,8 @@ body {
 }
 
 .chart {
-    background: #d8efe9;
+    background-image: linear-gradient(#38006b, #4a148c, #6a1b9a, #9c4dcc);
+    color: rgba(255, 255, 255, 0.9);
     display: block;
     margin: 2rem auto 0;
     box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
@@ -25,13 +26,13 @@ body {
 }
 
 .bar:hover {
-    fill: #d8efe9;
+    fill: #38006b;
 }
 
 #tooltip {
-    background: rgba(0, 0, 0, 0.47);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 555;
-    color: #fff;
+    color: #de1654;
     position: absolute; 
     transition: all .5s;
 }
