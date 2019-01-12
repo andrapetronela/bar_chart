@@ -15,7 +15,10 @@ const tooltip = d3.select('body')
                     .append('rect')
                     .attr('id', 'tooltip')
                     .attr('data-date', (d) => d[0]);
-
+    
+const minDate = new Date(dataset[0][0]);
+const maxDate = new Date(dataset[dataset.length-1][0]);
+    
 const w = 800,
       h = 400,
       yMargin = 40,
@@ -27,14 +30,15 @@ const svg = d3.select('body')
             .attr('width', w)
             .attr('height', h);
 
-const xScale = d3.scaleLinear()
-                .domain([1947, 2015])
-                .range([yMargin, w]);
 
+const xScale = d3.scaleTime()
+                .domain([minDate, maxDate])
+                .range([yMargin, w]);
 const yScale = d3.scaleLinear()
                 .domain([d3.max(dataset, (d) => d[1]), 0])
                 .range([h - yMargin, 0]);
                 
+
     
 svg.selectAll('rect')
     .data(dataset)
